@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { useTheme } from "styled-components";
 import { useCalendar } from "@/context/CalendarProvider";
 import { getDatesRange } from "@/utils/getDatesRange";
@@ -13,7 +12,7 @@ import {
 } from "./styles";
 import { TileProps } from "./types";
 
-const Tile: FC<TileProps> = ({ row, data, zoom, onTileClick }) => {
+export default function Tile({ row, data, zoom, onTileClick }: TileProps) {
 	const { date } = useCalendar();
 	const datesRange = getDatesRange(date, zoom);
 	const { y, x, width } = getTileProperties(
@@ -46,6 +45,4 @@ const Tile: FC<TileProps> = ({ row, data, zoom, onTileClick }) => {
 			</StyledTextWrapper>
 		</StyledTileWrapper>
 	);
-};
-
-export default Tile;
+}

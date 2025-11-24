@@ -15,20 +15,20 @@ import { ReactComponent as sun } from "./svgs/sun.svg";
 import { Icon, IconsNames } from "./types";
 
 const icons: { [key in IconsNames]: Icon } = {
-  add,
-  subtract,
-  filter,
-  arrowLeft,
-  arrowRight,
-  defaultAvatar,
-  calendarWarning,
-  calendarFree,
-  arrowDown,
-  arrowUp,
-  search,
-  close,
-  moon,
-  sun
+	add,
+	subtract,
+	filter,
+	arrowLeft,
+	arrowRight,
+	defaultAvatar,
+	calendarWarning,
+	calendarFree,
+	arrowDown,
+	arrowUp,
+	search,
+	close,
+	moon,
+	sun
 };
 
 export default icons;

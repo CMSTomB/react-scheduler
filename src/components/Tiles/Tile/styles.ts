@@ -1,9 +1,9 @@
 import { styled } from "@mui/system";
-import { Box, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import { marginPaddingReset as mui_marginPaddingReset, truncate as mui_truncate } from "@/mui_styles";
 import { leftColumnWidth, tileHeight } from "@/constants";
 
-export const StyledTileWrapper = styled('button')(({ theme }) => ({
+export const StyledTileWrapper = styled(Paper)(({ theme }) => ({
 	...mui_marginPaddingReset,
 	height: `${tileHeight}px`,
 	position: 'absolute',
@@ -17,12 +17,14 @@ export const StyledTileWrapper = styled('button')(({ theme }) => ({
 }));
 
 export const StyledTextWrapper = styled(Box)({
-	margin: '10px 16px',
+	margin: '0px 8px',
 	position: 'relative',
 	display: 'flex',
+	alignItems: 'center',
 	fontSize: '10px',
 	letterSpacing: '0.5px',
-	lineHeight: '12px'
+	lineHeight: '12px',
+	height: '100%'
 });
 
 export const StyledDescription = styled(Typography)({

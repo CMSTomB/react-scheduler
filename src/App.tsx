@@ -1,5 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 import { ThemeProvider } from "@mui/material";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from "dayjs";
 import { mui_theme } from "./mui_styles";
 import { createMockData } from "./mock/appMock";
@@ -58,33 +60,35 @@ function App() {
 		);
 
 	return (
-		<ThemeProvider theme={mui_theme}>
-			<ConfigPanel values={values} onSubmit={setValues} />
-			{isFullscreen ? (
-				<Scheduler
-					startDate={values.startDate ? new Date(values.startDate).toISOString() : undefined}
-					onRangeChange={handleRangeChange}
-					data={filteredData}
-					isLoading={false}
-					onTileClick={handleTileClick}
-					onFilterData={handleFilterData}
-					config={{ zoom: 0, maxRecordsPerPage: maxRecordsPerPage, showThemeToggle: true }}
-					onItemClick={(data) => console.log("clicked: ", data)}
-				/>
-			) : (
-				<StyledSchedulerFrame>
+		<LocalizationProvider dateAdapter={AdapterDayjs}>
+			<ThemeProvider theme={mui_theme}>
+				<ConfigPanel values={values} onSubmit={setValues} />
+				{isFullscreen ? (
 					<Scheduler
 						startDate={values.startDate ? new Date(values.startDate).toISOString() : undefined}
 						onRangeChange={handleRangeChange}
-						isLoading={false}
 						data={filteredData}
+						isLoading={false}
 						onTileClick={handleTileClick}
 						onFilterData={handleFilterData}
+						config={{ zoom: 0, maxRecordsPerPage: maxRecordsPerPage, showThemeToggle: true }}
 						onItemClick={(data) => console.log("clicked: ", data)}
 					/>
-				</StyledSchedulerFrame>
-			)}
-		</ThemeProvider>
+				) : (
+					<StyledSchedulerFrame>
+						<Scheduler
+							startDate={values.startDate ? new Date(values.startDate).toISOString() : undefined}
+							onRangeChange={handleRangeChange}
+							isLoading={false}
+							data={filteredData}
+							onTileClick={handleTileClick}
+							onFilterData={handleFilterData}
+							onItemClick={(data) => console.log("clicked: ", data)}
+						/>
+					</StyledSchedulerFrame>
+				)}
+			</ThemeProvider>
+		</LocalizationProvider>
 	);
 }
 

@@ -59,6 +59,7 @@
     "@mui/icons-material": "^7.3.5",
     "@mui/material": "^7.3.5",
     "@mui/system": "^7.3.5",
+    "@mui/x-date-pickers": "^8.19.0",
     "dayjs": "1.11.7",
     "lodash.debounce": "4.0.8",
     "path": "0.12.7",

@@ -21,6 +21,9 @@ export const StyledLeftColumnHeader = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: end;
+	align-items: center;
+	padding-left: 4px;
+	padding-right: 4px;
   width: ${leftColumnWidth}px;
   background-color: ${({ theme }) => theme.colors.background};
   z-index: 3;

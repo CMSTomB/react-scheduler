@@ -11,52 +11,52 @@ import { StyledCanvas, StyledOuterWrapper, StyledWrapper } from "./styles";
 import Topbar from "./Topbar";
 
 const Header: FC<HeaderProps> = ({ zoom, topBarWidth, showThemeToggle, toggleTheme }) => {
-  const { week } = useLanguage();
-  const { date, cols, dayOfYear, startDate } = useCalendar();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+	const { week } = useLanguage();
+	const { date, cols, dayOfYear, startDate } = useCalendar();
+	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const theme = useTheme();
+	const theme = useTheme();
 
-  const handleResize = useCallback(
-    (ctx: CanvasRenderingContext2D) => {
-      const width = getCanvasWidth();
-      const currentHeaderHeight = zoom === 2 ? zoom2HeaderHeight : headerHeight;
-      const height = currentHeaderHeight + 1;
-      resizeCanvas(ctx, width, height);
+	const handleResize = useCallback(
+		(ctx: CanvasRenderingContext2D) => {
+			const width = getCanvasWidth();
+			const currentHeaderHeight = zoom === 2 ? zoom2HeaderHeight : headerHeight;
+			const height = currentHeaderHeight + 1;
+			resizeCanvas(ctx, width, height);
 
-      drawHeader(ctx, zoom, cols, startDate, week, dayOfYear, theme);
-    },
-    [cols, dayOfYear, startDate, week, zoom, theme]
-  );
+			drawHeader(ctx, zoom, cols, startDate, week, dayOfYear, theme);
+		},
+		[cols, dayOfYear, startDate, week, zoom, theme]
+	);
 
-  useEffect(() => {
-    if (!canvasRef.current) return;
-    const ctx = canvasRef.current.getContext("2d");
-    if (!ctx) return;
-    const onResize = () => handleResize(ctx);
-    window.addEventListener("resize", onResize);
+	useEffect(() => {
+		if (!canvasRef.current) return;
+		const ctx = canvasRef.current.getContext("2d");
+		if (!ctx) return;
+		const onResize = () => handleResize(ctx);
+		window.addEventListener("resize", onResize);
 
-    return () => window.removeEventListener("resize", onResize);
-  }, [handleResize]);
+		return () => window.removeEventListener("resize", onResize);
+	}, [handleResize]);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    canvas.style.letterSpacing = "1px";
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		if (!canvas) return;
+		canvas.style.letterSpacing = "1px";
+		const ctx = canvas.getContext("2d");
+		if (!ctx) return;
 
-    handleResize(ctx);
-  }, [date, zoom, handleResize]);
+		handleResize(ctx);
+	}, [date, zoom, handleResize]);
 
-  return (
-    <StyledOuterWrapper>
-      <Topbar width={topBarWidth} showThemeToggle={showThemeToggle} toggleTheme={toggleTheme} />
-      <StyledWrapper id={canvasHeaderWrapperId}>
-        <StyledCanvas ref={canvasRef} />
-      </StyledWrapper>
-    </StyledOuterWrapper>
-  );
+	return (
+		<StyledOuterWrapper>
+			<Topbar width={topBarWidth} showThemeToggle={showThemeToggle} toggleTheme={toggleTheme} />
+			<StyledWrapper id={canvasHeaderWrapperId}>
+				<StyledCanvas ref={canvasRef} />
+			</StyledWrapper>
+		</StyledOuterWrapper>
+	);
 };
 
 export default Header;
