@@ -13,4 +13,3 @@ export { default as Tiles } from "./Tiles";
 export { default as ConfigPanel } from "./ConfigPanel";
 export { default as Tooltip } from "./Tooltip";
 export { default as PaginationButton } from "./PaginationButton";
-export { default as Toggle } from "./Toggle";
